@@ -1,0 +1,9 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type='button' i]:disabled {
+  background-color: green;
+  color: black;
+}

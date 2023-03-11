@@ -1,0 +1,65 @@
+<form [formGroup]="stockForm" (ngSubmit)="onSubmit()" class="form">
+  <label for="symbol">Stock Symbol:</label>
+  <input
+    type="text"
+    id="symbol"
+    formControlName="symbol"
+    (keydown)="inEdit()"
+  />
+  <div class="row">
+    <ng-container class="col-6">
+      <input
+        type="button"
+        id="buy"
+        value="Buy"
+        (click)="onBuySell(true)"
+        [disabled]="buy"
+      />
+    </ng-container>
+    <ng-container class="col-6">
+      <input
+        type="button"
+        id="sell"
+        value="Sell"
+        (click)="onBuySell(false)"
+        [disabled]="!buy"
+      />
+    </ng-container>
+  </div>
+  <div class="row">
+    <ng-container class="col-6">
+      <input
+        type="button"
+        id="share"
+        value="Share"
+        (click)="onShareDollar(true)"
+        [disabled]="share"
+      />
+    </ng-container>
+    <ng-container class="col-6">
+      <input
+        type="button"
+        id="dollar"
+        value="Dollar"
+        (click)="onShareDollar(false)"
+        [disabled]="!share"
+      />
+    </ng-container>
+  </div>
+  <label for="quantity">Quantity unit:</label>
+  <input
+    type="text"
+    id="quantity"
+    formControlName="quantity"
+    (keydown)="inEdit()"
+  />
+  <button type="submit" (click)="onSubmit()" [disabled]="stockForm.invalid">
+    Submit
+  </button>
+</form>
+<div *ngIf="submitted">
+  <p>
+    {{ buy ? 'Buying' : 'Selling' }} {{ quantity.value }}
+    {{ share ? 'shares' : 'dollars' }} of {{ symbol.value }}
+  </p>
+</div>
